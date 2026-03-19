@@ -64,8 +64,7 @@ APP_PASSWORD = st.secrets.get("APP_PASSWORD", "pepper2026")
 st.markdown(
     """
     <style>
-    input[type="password"],
-    input[type="text"] {
+    input[type="password"] {
         color: white !important;
         caret-color: white !important;
     }
