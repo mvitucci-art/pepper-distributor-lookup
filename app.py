@@ -721,45 +721,29 @@ if "df" in st.session_state:
 
             st.markdown("---")
             st.markdown("**Supplier Summary**")
-            summary_display = supplier_agg[
-                ["Supplier", "Total SKUs", "Stocked SKUs", "Not Stocked", "L30D Sales", "L30D Cases"]
-            ].copy()
+            summary_display = supplier_agg.copy()
             summary_display["L30D Sales"] = summary_display["L30D Sales"].apply(
                 lambda x: f"${x:,.2f}" if pd.notna(x) else ""
             )
             summary_display["L30D Cases"] = summary_display["L30D Cases"].apply(
                 lambda x: f"{x:,.0f}" if pd.notna(x) else ""
             )
-            html_table = summary_display.to_html(index=False, escape=False)
-            st.markdown(
-                f"""
-                <style>
-                .summary-table {{
-                    width: 100%;
-                    border-collapse: collapse;
-                    font-family: 'Inter', sans-serif;
-                    font-size: 14px;
-                }}
-                .summary-table th {{
-                    background-color: {CHARCOAL};
-                    color: {WHITE};
-                    text-align: center;
-                    padding: 10px 14px;
-                    font-weight: 600;
-                }}
-                .summary-table td {{
-                    text-align: center;
-                    padding: 9px 14px;
-                    border-bottom: 1px solid {BORDER};
-                    color: {CHARCOAL};
-                }}
-                .summary-table tr:hover {{
-                    background-color: {GREEN_LIGHT};
-                }}
-                </style>
-                {html_table.replace('<table', '<table class="summary-table"')}
-                """,
-                unsafe_allow_html=True,
+            st.dataframe(
+                summary_display[
+                    [
+                        "Supplier",
+                        "Total SKUs",
+                        "Stocked SKUs",
+                        "Not Stocked",
+                        "L30D Sales",
+                        "L30D Cases",
+                    ]
+                ],
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "Supplier": st.column_config.TextColumn(width="medium"),
+                },
             )
 
     # ── Data tab ─────────────────────────────────────────────────────────
