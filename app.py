@@ -61,6 +61,18 @@ st.set_page_config(
 # ── Password gate ───────────────────────────────────────────────────────────
 APP_PASSWORD = st.secrets.get("APP_PASSWORD", "pepper2026")
 
+st.markdown(
+    """
+    <style>
+    input[type="password"] {
+        color: white !important;
+        caret-color: white !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 
 def check_password():
     if st.session_state.get("authenticated"):
