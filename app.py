@@ -64,7 +64,21 @@ APP_PASSWORD = st.secrets.get("APP_PASSWORD", "pepper2026")
 st.markdown(
     """
     <style>
-    input[type="password"] {
+    /* Dark backgrounds → white text */
+    input[type="password"],
+    section[data-testid="stSidebar"] input,
+    section[data-testid="stSidebar"] textarea {
+        color: white !important;
+        caret-color: white !important;
+    }
+    /* Light backgrounds → black text */
+    .stApp input[type="text"],
+    .stApp textarea {
+        color: #1a1a1a !important;
+        caret-color: #1a1a1a !important;
+    }
+    /* Sidebar overrides main */
+    section[data-testid="stSidebar"] input[type="text"] {
         color: white !important;
         caret-color: white !important;
     }
