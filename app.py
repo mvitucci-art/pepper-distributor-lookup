@@ -71,16 +71,20 @@ st.markdown(
         color: white !important;
         caret-color: white !important;
     }
-    /* Light backgrounds → black text */
-    .stApp input[type="text"],
+    /* Light backgrounds → black text (except form inputs) */
     .stApp textarea {
         color: #1a1a1a !important;
         caret-color: #1a1a1a !important;
     }
-    /* Sidebar overrides main */
-    section[data-testid="stSidebar"] input[type="text"] {
+    /* Main area text inputs → white (dark form card) */
+    .stApp [data-testid="stForm"] input[type="text"] {
         color: white !important;
         caret-color: white !important;
+    }
+    /* Sidebar text inputs → black on light sidebar */
+    section[data-testid="stSidebar"] input[type="text"] {
+        color: #1a1a1a !important;
+        caret-color: #1a1a1a !important;
     }
     </style>
     """,
