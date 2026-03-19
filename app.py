@@ -226,7 +226,7 @@ st.markdown(
 
     /* ── Search card ──────────────────────────────────────────── */
     .search-label {{
-        color: {CHARCOAL} !important;
+        color: {WHITE} !important;
         font-weight: 600 !important;
         font-size: 0.95rem !important;
         margin-bottom: 0.3rem !important;
