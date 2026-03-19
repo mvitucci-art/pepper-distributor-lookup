@@ -58,6 +58,48 @@ st.set_page_config(
     layout="wide",
 )
 
+# ── Password gate ───────────────────────────────────────────────────────────
+APP_PASSWORD = st.secrets.get("APP_PASSWORD", "pepper2026")
+
+
+def check_password():
+    if st.session_state.get("authenticated"):
+        return True
+
+    st.markdown(
+        f"""
+        <div style="display:flex;flex-direction:column;align-items:center;
+                    justify-content:center;min-height:60vh;">
+            <div style="background:{CHARCOAL};border-radius:16px;padding:3rem;
+                        text-align:center;max-width:400px;width:100%;">
+                <div style="background:{GREEN};width:50px;height:50px;
+                            border-radius:12px;display:inline-flex;
+                            align-items:center;justify-content:center;
+                            font-family:Lato,sans-serif;font-weight:900;
+                            font-size:24px;color:white;margin-bottom:1rem;">P</div>
+                <h2 style="color:white;font-family:Lato,sans-serif;
+                           margin:0 0 0.3rem 0;">Pepper</h2>
+                <p style="color:{GREEN};margin:0 0 1.5rem 0;font-size:0.9rem;">
+                    Growth Agent - Distributor Lookup</p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    password = st.text_input("Enter password to continue", type="password")
+    if st.button("Sign in", use_container_width=True):
+        if password == APP_PASSWORD:
+            st.session_state["authenticated"] = True
+            st.rerun()
+        else:
+            st.error("Incorrect password.")
+    return False
+
+
+if not check_password():
+    st.stop()
+
 # ── Full theme ──────────────────────────────────────────────────────────────
 st.markdown(
     f"""
