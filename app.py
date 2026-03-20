@@ -542,6 +542,10 @@ if submitted:
     df.columns = [c.upper().strip() for c in df.columns]
     available = [c for c in COLUMN_MAP if c in df.columns]
     df = df[available]
+
+    # Remove header rows that leaked into data
+    if "SUPPLIER_NAME" in df.columns:
+        df = df[df["SUPPLIER_NAME"].str.lower() != "supplier name"]
     df = df.rename(columns=COLUMN_MAP)
 
     for col in ["L30D Sales", "L30D Cases"]:
