@@ -579,7 +579,6 @@ if "df" in st.session_state:
     filtered = df.copy()
 
     filter_cols = [
-        "Distributor",
         "Growth Agent SKU Stocked Flag",
         "Growth Agent Campaign Signed",
         "Supplier",
