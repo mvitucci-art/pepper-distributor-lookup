@@ -644,7 +644,7 @@ if "df" in st.session_state:
                         "L30D Cases": ("L30D Cases", "sum"),
                     }
                 )
-                .sort_values("L30D Sales", ascending=False)
+                .sort_values("Supplier", ascending=True)
             )
             supplier_agg["Not Stocked"] = (
                 supplier_agg["Total SKUs"] - supplier_agg["Stocked SKUs"]
@@ -658,7 +658,7 @@ if "df" in st.session_state:
             )
 
             # Sorted supplier order for consistent axis
-            supplier_order = top.sort_values("L30D Sales", ascending=True)["Supplier"].tolist()
+            supplier_order = sorted(top["Supplier"].tolist())
 
             y_axis = alt.Y(
                 "Supplier:N",
